@@ -83,7 +83,7 @@ function SidebarComponent() {
         <Sidebar className="w-[200] text-white" >
           <SidebarHeader className="font-bold text-white text-xl bg-blue-900">
             <div className="flex gap-2">
-              <div className="w-auto"><img src="/_next/static/media/logo.c3cc4a2b.png" alt="logo" /></div>
+              <div className="w-auto"><img src="/images/logo.png" alt="logo" /></div>
             </div>
             </SidebarHeader>
           <SidebarContent className="bg-blue-900">
