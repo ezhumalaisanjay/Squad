@@ -73,8 +73,7 @@ function MobileView() {
         <SheetHeader>
           <SheetTitle className="text-white p-4 pl-0">
             <div className="flex gap-2">
-                <div className="w-16"><img src="/_next/static/media/logo.c3cc4a2b.png" alt="logo" /></div>            
-                <div>Squad</div>
+                <div><img src="/_next/static/media/logo.c3cc4a2b.png" alt="logo" /></div> 
               </div>
           </SheetTitle>
         </SheetHeader>
