@@ -6,15 +6,16 @@ import Layout, { Content, Header } from "antd/es/layout/layout";
 import Sider from "antd/es/layout/Sider";
 import SidebarComponent from "@/components/Sidebar";
 import {useEffect, useState } from "react";
-import Onboarding from "@/components/Onboarding";
+import TimeTracker from "../TimeTracker";
 
-export default function OnboardingIndex() {
+export default function TimeTrackerIndex() {
   const[width, setWidth] = useState(window.innerWidth);
   const components = [
     {
-    name: "My Organization",
-    link: ""
-    }];
+      name: "My Data",
+      link: ""
+    }
+  ];
 
   useEffect(() => {
     const handleResize = () => setWidth(window.innerWidth)
@@ -30,7 +31,7 @@ export default function OnboardingIndex() {
         <Header className="h-14 p-0 bg-blue-900">
           <HeaderSection components={components}/>
         </Header>
-        <Content><Onboarding /></Content>
+        <Content><TimeTracker /></Content>
       </Layout> :
         <Layout>
           <Sider breakpoint="md">
@@ -40,7 +41,7 @@ export default function OnboardingIndex() {
             <Header className="h-14 p-0 bg-blue-900">
               <HeaderSection components={components}/>
             </Header>
-            <Content><Onboarding /></Content>
+            <Content><TimeTracker /></Content>
           </Layout>
         </Layout>}
     </Layout>

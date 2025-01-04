@@ -1,27 +1,30 @@
-import { useEffect, useState } from "react";
-import LeaveTracker from ".";
+"use client"
 import { Layout } from "antd";
+import LeaveTracker from "."
 import { Content, Header } from "antd/es/layout/layout";
 import HeaderSection from "../Header";
 import Sider from "antd/es/layout/Sider";
 import SidebarComponent from "../Sidebar";
+import { useEffect, useState } from "react";
+import FullCalendar from "@fullcalendar/react";
+import timeGridPlugin from '@fullcalendar/timegrid'
 
-function LeaveSummary() {
+function Shift() {
 
-  return (
-      <>
-        <LeaveTracker />
-        <div className="flex justify-center h-[500] items-center text-wrap text-center">
-          <p className="text-wrap">
-            Update the <a href="" className="text-blue-400">Date of Joining</a> for this employee to display their leave information <br/> 
-            and enable them to perform leave related actions.
-          </p> 
-        </div>
-      </>
-  );
+  return(
+    <>
+      <LeaveTracker />
+      <div className="m-3">
+        <FullCalendar 
+        plugins={[ timeGridPlugin ]}
+        initialView='timeGridWeek'
+        />
+      </div> 
+    </>
+  )
 }
 
-function LeaveSummaryIndex() {
+function ShiftIndex() {
   const[width, setWidth] = useState(window.innerWidth);
   const components = [
     {
@@ -53,7 +56,7 @@ function LeaveSummaryIndex() {
             <Header className="h-14 p-0 bg-blue-900">
               <HeaderSection components={components}/>
             </Header>
-            <Content><LeaveSummary /></Content>
+            <Content><Shift /></Content>
           </Layout> :
             <Layout>
               <Sider breakpoint="md">
@@ -63,12 +66,11 @@ function LeaveSummaryIndex() {
                 <Header className="h-14 p-0 bg-blue-900">
                   <HeaderSection components={components}/>
                 </Header>
-                <Content><LeaveSummary /></Content>
+                <Content><Shift /></Content>
               </Layout>
             </Layout>}
         </Layout>
       </>
-    )
+)
 }
-
-export default LeaveSummaryIndex
+export default ShiftIndex

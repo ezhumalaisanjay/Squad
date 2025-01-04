@@ -10,6 +10,16 @@ import HomePage from "@/components/Home";
 
 export default function HomeIndex() {
   const[width, setWidth] = useState(window.innerWidth);
+  const components = [
+    {
+      name: "My Space",
+      link: ""
+    },
+    {
+      name: "Organization",
+      link: ""
+    }
+  ];
 
   useEffect(() => {
     const handleResize = () => setWidth(window.innerWidth)
@@ -22,8 +32,8 @@ export default function HomeIndex() {
     <Layout>
       { width < 768 ? 
       <Layout>
-        <Header className="h-14 bg-blue-900">
-          <HeaderSection />
+        <Header className="h-14 p-0 bg-blue-900">
+          <HeaderSection components={components}/>
         </Header>
         <Content><HomePage /></Content>
       </Layout> :
@@ -32,8 +42,8 @@ export default function HomeIndex() {
             <SidebarComponent />
           </Sider>
           <Layout>
-            <Header className="h-14 bg-blue-900">
-              <HeaderSection />
+            <Header className="h-14 p-0 bg-blue-900">
+              <HeaderSection components={components}/>
             </Header>
             <Content><HomePage /></Content>
           </Layout>

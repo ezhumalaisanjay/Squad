@@ -11,8 +11,8 @@ function DrawerDisplay({candidateDetails, updatedDetails, handleClick, isOpen, i
       title={<h2>Add Candidate</h2>}
       keyboard={true}
       open={isOpen}
-      placement='bottom'
-      height={500}
+      placement='top'
+      height={630}
       footer={
       <>
         <Button onClick={handleClick}>Submit</Button>

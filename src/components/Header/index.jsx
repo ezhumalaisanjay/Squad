@@ -13,31 +13,37 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { useState } from "react";
+import MobileView from "../Sidebar/MobileView";
 
-function HeaderSection() {
+function HeaderSection({components}) {
   const [isOpen1, setIsOpen1] = useState(false);
   const [isOpen2, setIsOpen2] = useState(false);
   const [isOpen3, setIsOpen3] = useState(false);
   const [isOpen4, setIsOpen4] = useState(false);
-  const components = [
-    {
-      name: "My Space",
-      link: "/"
-    },
-    {
-      name: "Organization",
-      link: "/"
-    }
-  ];
   const addLists = ["Leave", "Travel Request", "Travel Expense", "Task", "Address Proof", "Experience Letter"];
 
   return (
   <>
     <div className="flex justify-between items-center text-white">
-      <ul className="flex">
-        {components.map((item, i) => <li key={i}><Button className="hover:border-b-2 rounded-none" variant="Link">{item.name}</Button></li>)}
+      <ul className="flex items-center">
+        <MobileView />
+        {(components) ? components.map((item, i) => <li key={i}>
+          <Button className="hover:border-b-2 p-2 lg:p-4 rounded-none" variant="Link">
+            {item.name}
+          </Button></li>) : 
+          [{
+            name: "My Space",
+            link: ""
+          },
+          {
+            name: "Organization",
+            link: ""
+            }].map((item, i) => <li key={i}>
+              <Button className="hover:border-b-2 p-2 lg:p-4 rounded-none" variant="Link">
+                {item.name}
+            </Button></li>)}
       </ul>
-      <div className="flex gap-2">
+      <div className="flex">
         <Popover open={isOpen1} onOpenChange={setIsOpen1}>
           <PopoverTrigger>
             <Button variant="Icon" className="text-lg size-12 hover:bg-blue-700 "> <SquarePlus /> </Button>

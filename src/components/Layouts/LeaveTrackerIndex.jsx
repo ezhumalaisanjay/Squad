@@ -10,6 +10,20 @@ import LeaveTracker from "@/components/LeaveTracker";
 
 export default function LeaveTrackerIndex() {
   const[width, setWidth] = useState(window.innerWidth);
+  const components = [
+    {
+      name: "My Data",
+      link: ""
+    },
+    {
+      name: "Team",
+      link: ""
+    },
+    {
+      name: "Holidays",
+      link: ""
+    }
+  ];
 
   useEffect(() => {
     const handleResize = () => setWidth(window.innerWidth)
@@ -22,8 +36,8 @@ export default function LeaveTrackerIndex() {
     <Layout>
       { width < 768 ? 
       <Layout>
-        <Header className="h-14 bg-blue-900">
-          <HeaderSection />
+        <Header className="h-14 p-0 bg-blue-900">
+          <HeaderSection components={components} />
         </Header>
         <Content><LeaveTracker /></Content>
       </Layout> :
@@ -32,8 +46,8 @@ export default function LeaveTrackerIndex() {
             <SidebarComponent />
           </Sider>
           <Layout>
-            <Header className="h-14 bg-blue-900">
-              <HeaderSection />
+            <Header className="h-14 p-0 bg-blue-900">
+              <HeaderSection components={components}/>
             </Header>
             <Content><LeaveTracker /></Content>
           </Layout>

@@ -1,27 +1,22 @@
-import { useEffect, useState } from "react";
-import LeaveTracker from ".";
+"use client"
 import { Layout } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
+import { useEffect, useState } from "react";
 import HeaderSection from "../Header";
 import Sider from "antd/es/layout/Sider";
 import SidebarComponent from "../Sidebar";
+import LeaveTracker from ".";
 
-function LeaveSummary() {
-
+function LeaveBalance() {
   return (
-      <>
-        <LeaveTracker />
-        <div className="flex justify-center h-[500] items-center text-wrap text-center">
-          <p className="text-wrap">
-            Update the <a href="" className="text-blue-400">Date of Joining</a> for this employee to display their leave information <br/> 
-            and enable them to perform leave related actions.
-          </p> 
-        </div>
-      </>
-  );
+    <>
+      <LeaveTracker />
+      <div className="h-[500] flex items-center justify-center">No Data Found</div>
+    </>
+  )
 }
 
-function LeaveSummaryIndex() {
+function LeaveBalanceIndex() {
   const[width, setWidth] = useState(window.innerWidth);
   const components = [
     {
@@ -53,7 +48,7 @@ function LeaveSummaryIndex() {
             <Header className="h-14 p-0 bg-blue-900">
               <HeaderSection components={components}/>
             </Header>
-            <Content><LeaveSummary /></Content>
+            <Content><LeaveBalance /></Content>
           </Layout> :
             <Layout>
               <Sider breakpoint="md">
@@ -63,12 +58,11 @@ function LeaveSummaryIndex() {
                 <Header className="h-14 p-0 bg-blue-900">
                   <HeaderSection components={components}/>
                 </Header>
-                <Content><LeaveSummary /></Content>
+                <Content><LeaveBalance /></Content>
               </Layout>
             </Layout>}
         </Layout>
       </>
-    )
-}
+)}
 
-export default LeaveSummaryIndex
+export default LeaveBalanceIndex

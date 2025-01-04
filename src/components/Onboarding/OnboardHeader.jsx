@@ -53,7 +53,7 @@ export function OnboardHeader({openDrawer}) {
   ]  
 
   return (
-    <div className="flex justify-between m-2">
+    <div className="flex flex-wrap justify-between m-2">
       <div>
         <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger asChild>
@@ -70,7 +70,7 @@ export function OnboardHeader({openDrawer}) {
             </Button>
           </PopoverTrigger>
           <Button variant="Link">Edit</Button>
-          <PopoverContent className="w-[200px] p-0">
+          <PopoverContent className="w-full p-0">
             <Command>
               <CommandInput placeholder="" className="h-9" />
               <CommandList>
@@ -100,7 +100,7 @@ export function OnboardHeader({openDrawer}) {
           </PopoverContent>
         </Popover>
       </div>
-      <div className="flex gap-2">
+      <div className="flex flex-wrap gap-2">
       <Popover open={click} onOpenChange={setClick}>
           <PopoverTrigger asChild>
             <Button
