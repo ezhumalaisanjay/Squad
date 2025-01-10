@@ -32,7 +32,6 @@ function LeaveRequest() {
 
   return(
     <>
-      <LeaveTracker />
       <div className="grid grid-cols-2 justify-between items-center ">
         <div className="m-5 flex">
           <Select>
@@ -67,7 +66,7 @@ function LeaveRequest() {
           <Button variant="secondary"><MoreHorizontal /></Button>
         </div>
       </div>
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center h-[450]">
         <Button className="bg-blue-500 hover:bg-blue-600" onClick={openDrawer}>Add Request</Button>
         <LeaveDrawer open={isOpen} close={closeDrawer}/>
       </div>
@@ -75,55 +74,4 @@ function LeaveRequest() {
   )
 }
 
-function LeaveRequestIndex() {
-  const[width, setWidth] = useState(window.innerWidth);
-  const components = [
-    {
-      name: "My Data",
-      link: ""
-    },
-    {
-      name: "Team",
-      link: ""
-    },
-    {
-      name: "Holidays",
-      link: ""
-    }
-  ];
-  
-    useEffect(() => {
-      const handleResize = () => setWidth(window.innerWidth)
-      window.addEventListener('resize', handleResize);
-  
-      return ()=>  window.removeEventListener('resize', handleResize);
-    }, [])
-  
-    return(
-      <>
-        <Layout>
-          { width < 768 ? 
-          <Layout>
-            <Header className="h-14 p-0 bg-blue-900">
-              <HeaderSection components={components}/>
-            </Header>
-            <Content><LeaveRequest /></Content>
-          </Layout> :
-            <Layout>
-              <Sider breakpoint="md">
-                <SidebarComponent />
-              </Sider>
-              <Layout>
-                <Header className="h-14 p-0 bg-blue-900">
-                  <HeaderSection components={components}/>
-                </Header>
-                <Content><LeaveRequest /></Content>
-              </Layout>
-            </Layout>}
-        </Layout>
-      </>
-    )
-}
-
-
-export default LeaveRequestIndex
+export default LeaveRequest

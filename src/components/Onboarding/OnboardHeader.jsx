@@ -1,6 +1,6 @@
 "use client"
 
-import { Check, ChevronsUpDown, ListFilter, MoreHorizontal } from "lucide-react"
+import { ArrowUpFromLine, Check, ChevronsUpDown, Download, ListFilter, MoreHorizontal } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
@@ -16,16 +16,14 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
 import { useState } from "react"
+import { Sheet, SheetContent, SheetFooter, SheetTrigger } from "../ui/sheet"
+import { DialogTitle } from "../ui/dialog"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion"
+import { Input } from "../ui/input"
+import { Label } from "../ui/label"
+import { Checkbox } from "../ui/checkbox"
+import { Select, SelectContent, SelectTrigger, SelectValue } from "../ui/select"
 
 
 export function OnboardHeader({openDrawer}) {
@@ -41,8 +39,8 @@ export function OnboardHeader({openDrawer}) {
       value: "sveltekit",
       label: "SvelteKit",
     },{
-      value: "nuxt.js",
-      label: "Nuxt.js",
+      value: "next.js",
+      label: "Next.js",
     },{
       value: "remix",
       label: "Remix",
@@ -51,6 +49,12 @@ export function OnboardHeader({openDrawer}) {
       label: "Astro",
     },
   ]  
+
+  const filters = ["First name", "last name", "Email ID", "Official Email", "Onboarding Status", "Department",
+    "Source of Hire", "PAN card number", "Aadhar card number", "UAN number", "Candidate ID", "Present Address",
+    "Permanent Address", "Phone", "Experience", "Skill set", "Highest Qualification", "Location", "Title", "Current Salary",
+    "Additional Information", "Offer Letter", "Tentative Joining Date", "Added By", "Added Time", "Modified By"
+  ]
 
   return (
     <div className="flex flex-wrap justify-between m-2">
@@ -145,21 +149,89 @@ export function OnboardHeader({openDrawer}) {
           </PopoverContent>
         </Popover>
         <Button className="bg-blue-900 hover:bg-blue-600" onClick={openDrawer}>Add Candidate</Button>
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
+        <Sheet>
+          <SheetTrigger>
             <Button variant="outline"><ListFilter /></Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-56">
-            <DropdownMenuLabel>Filter</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuRadioGroup>
-              <DropdownMenuRadioItem value="top">Top</DropdownMenuRadioItem>
-              <DropdownMenuRadioItem value="bottom">Bottom</DropdownMenuRadioItem>
-              <DropdownMenuRadioItem value="right">Right</DropdownMenuRadioItem>
-            </DropdownMenuRadioGroup>
-          </DropdownMenuContent>
-        </DropdownMenu>
-        <Button variant="outline"><MoreHorizontal /></Button>
+          </SheetTrigger>
+          <SheetContent className="m-12 h-[550]">
+            <DialogTitle>Filter</DialogTitle>
+            <div>
+              <Command>
+                <CommandInput placeholder="Search"/>
+              </Command>
+              <div>
+                <Accordion type="single" collapsible className="overflow-y-auto h-[400]">
+                  <AccordionItem value="item-1">
+                    <AccordionTrigger className="hover:no-underline">
+                      System Filters
+                    </AccordionTrigger>
+                    <AccordionContent className="p-4 pt-0 flex flex-col gap-2">
+                      <div className="flex flex-col gap-2">
+                        <Label>Employee</Label>
+                        <Input placeholder="Employee" />
+                      </div>
+                      <div className="flex flex-col gap-2">
+                        <Label>Department</Label>
+                        <Select>
+                          <SelectTrigger>
+                            <SelectValue placeholder="All Department" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <Command>
+                              <CommandInput />
+                              <Label>All Department</Label>
+                            </Command>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div className="flex flex-col gap-2">
+                        <Label>All Locations</Label>
+                        <Select>
+                          <SelectTrigger>
+                            <SelectValue placeholder="All Locations" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <Command>
+                              <CommandInput />
+                              <Label>All Locations</Label>
+                            </Command>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-2">
+                    <AccordionTrigger className="hover:no-underline">
+                      Fields
+                    </AccordionTrigger>
+                    <AccordionContent className="p-4 pt-0">
+                      {
+                        filters.map((name, i) => 
+                        <div key={i} className="flex gap-1 mb-3 items-center">
+                          <Checkbox />
+                          <Label>{name}</Label>
+                      </div>)
+                      }
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              </div>
+            </div>
+            <SheetFooter>
+                <Button className="bg-blue-500 hover:bg-blue-400">Apply</Button>
+                <Button variant="secondary">Reset</Button>
+            </SheetFooter>
+          </SheetContent>
+        </Sheet>
+        <Popover>
+            <PopoverTrigger>
+            <Button variant="outline"><MoreHorizontal /></Button>
+            </PopoverTrigger>
+            <PopoverContent className="flex flex-col">
+              <Button variant="ghost"> <Download /> Import</Button>
+              <Button variant="ghost"> <ArrowUpFromLine /> Export</Button>
+            </PopoverContent>
+          </Popover>
       </div>  
     </div>
   )

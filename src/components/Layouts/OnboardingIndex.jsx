@@ -13,7 +13,8 @@ export default function OnboardingIndex() {
   const components = [
     {
     name: "My Organization",
-    link: ""
+    link: "",
+    id: 0
     }];
 
   useEffect(() => {
@@ -34,7 +35,7 @@ export default function OnboardingIndex() {
       </Layout> :
         <Layout>
           <Sider breakpoint="md">
-            <SidebarComponent />
+            <SidebarComponent isActive={1}/>
           </Sider>
           <Layout>
             <Header className="h-14 p-0 bg-blue-900">

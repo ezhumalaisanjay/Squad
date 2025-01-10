@@ -1,76 +1,90 @@
 "use client"
-import { Layout } from "antd";
-import LeaveTracker from "."
-import { Content, Header } from "antd/es/layout/layout";
-import HeaderSection from "../Header";
-import Sider from "antd/es/layout/Sider";
-import SidebarComponent from "../Sidebar";
-import { useEffect, useState } from "react";
+import { Drawer } from "antd";
+import { useState } from "react";
 import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from '@fullcalendar/timegrid'
+import dayGridPlugin from "@fullcalendar/daygrid"
+import interactionPlugin from "@fullcalendar/interaction"
+import { Button } from "../ui/button";
+import { Card, CardContent, CardDescription } from "../ui/card";
+import { Label } from "@radix-ui/react-dropdown-menu";
+import { Select, SelectTrigger } from "../ui/select";
+import { SelectContent } from "@radix-ui/react-select";
+import { Input } from "../ui/input";
 
 function Shift() {
+const [open, setOpen] = useState(false);
 
+const openDrawer = () => {
+  setOpen(true);
+}
+const closeDrawer = () => {
+  setOpen(!open);
+}
   return(
     <>
-      <LeaveTracker />
       <div className="m-3">
         <FullCalendar 
-        plugins={[ timeGridPlugin ]}
+        plugins={[timeGridPlugin, dayGridPlugin, interactionPlugin]}
+        customButtons={{
+          myAssignShift: {
+            text: "Assign Shift",
+            click: () => {
+              setOpen(!open);
+            }
+          }
+        }}
+        headerToolbar={{start:'', center:"prev,today,next", end:"dayGridMonth,timeGridWeek myAssignShift"}}
         initialView='timeGridWeek'
+        editable={true}
+        selectable={true}
+        selectMirror={true}
         />
+        <Drawer 
+        open={open}
+        title="Assign Shift"
+        footer={
+        <>
+          <Button>Submit</Button>
+          <Button variant='secondary' onClick={closeDrawer}>Cancel</Button>
+        </>
+        }
+        >
+          <Card>
+            <CardDescription></CardDescription>
+            <CardContent className="grid gap-4 p-3">
+              <div className="flex flex-col gap-3">
+                <Label>Shift name</Label>
+                <Select>
+                  <SelectTrigger>
+                    Select
+                  </SelectTrigger>
+                  <SelectContent>
+                    <Input type="search" />
+                    <div className="flex justify-between">
+                      <div>General</div>
+                      <div>09:00 AM - 6:00PM</div>
+                    </div>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="flex flex-col gap-3">  
+                <Label>Dates</Label>
+                <div className="flex gap-2">
+                  <Input type='date'/>
+                  <Input type='date'/>
+                </div>
+              </div>
+              <div className="flex flex-col gap-3">
+                <Label>Reason</Label>
+                <Input type="text" placeholder="Reason"/>
+              </div>
+            </CardContent>
+          </Card>
+        </Drawer>
       </div> 
     </>
   )
 }
 
-function ShiftIndex() {
-  const[width, setWidth] = useState(window.innerWidth);
-  const components = [
-    {
-      name: "My Data",
-      link: ""
-    },
-    {
-      name: "Team",
-      link: ""
-    },
-    {
-      name: "Holidays",
-      link: ""
-    }
-  ];
-  
-    useEffect(() => {
-      const handleResize = () => setWidth(window.innerWidth)
-      window.addEventListener('resize', handleResize);
-  
-      return ()=>  window.removeEventListener('resize', handleResize);
-    }, [])
-  
-    return(
-      <>
-        <Layout>
-          { width < 768 ? 
-          <Layout>
-            <Header className="h-14 p-0 bg-blue-900">
-              <HeaderSection components={components}/>
-            </Header>
-            <Content><Shift /></Content>
-          </Layout> :
-            <Layout>
-              <Sider breakpoint="md">
-                <SidebarComponent />
-              </Sider>
-              <Layout>
-                <Header className="h-14 p-0 bg-blue-900">
-                  <HeaderSection components={components}/>
-                </Header>
-                <Content><Shift /></Content>
-              </Layout>
-            </Layout>}
-        </Layout>
-      </>
-)
-}
-export default ShiftIndex
+export default Shift

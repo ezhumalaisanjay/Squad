@@ -13,7 +13,8 @@ export default function TimeTrackerIndex() {
   const components = [
     {
       name: "My Data",
-      link: ""
+      link: "",
+      id: 0
     }
   ];
 
@@ -35,7 +36,7 @@ export default function TimeTrackerIndex() {
       </Layout> :
         <Layout>
           <Sider breakpoint="md">
-            <SidebarComponent />
+            <SidebarComponent isActive={3}/>
           </Sider>
           <Layout>
             <Header className="h-14 p-0 bg-blue-900">

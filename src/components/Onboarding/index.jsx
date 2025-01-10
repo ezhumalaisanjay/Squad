@@ -10,12 +10,25 @@ function Onboarding() {
   const [data, setData] = useState([]);
   const [id, setId] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
+  const [rowsData, setRowsData] = useState({
+    aadhar: undefined,
+    email: undefined,
+    fname: undefined,
+    id: undefined,
+    lname: undefined,
+    offemail: undefined,
+    pan: undefined,
+    phno: undefined,
+    uan : undefined
+  });
+
   const updatedDetails = (data) => {
     setCandidateDetails(data);
   }
+
   const getData = () => {
-      const updatedData = candidateDetails.slice()
-      updatedData.push(
+      let changedData = data.slice()
+      changedData.push(
         {
           id: id, 
           fname: candidateDetails[1], 
@@ -30,12 +43,11 @@ function Onboarding() {
   
         setId(i => i+1);
         setIsOpen(!isOpen);
-        setData(updatedData);
+        setData(changedData);
         let inputElement = document.querySelectorAll('input');
         inputElement.forEach((input) => {
           input.value = "";
         })
-        DrawerPrimitive.Close;
     }
 
     const openDrawer = () => {

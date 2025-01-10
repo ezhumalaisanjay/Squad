@@ -1,39 +1,54 @@
-import { Link } from "react-router-dom";
+"use client"
 import { Button } from "../ui/button"
+import TimeLogs from "./TimeLogs";
+import TimeSheets from "./TimeSheets";
+import Jobs from "./Jobs";
+import Projects from "./Projects";
+import JobsSchedule from "./JobsSchedule";
+import { useState } from "react";
 
 function TimeTracker() {
+  const [index, setIndex] = useState(0)
   const components = [
     {
       name: "Time Logs",
-      link: "/timetracker/"
+      id: 0
     },{
       name: "Timesheets",
-      link: ""
+      id: 1
     },{
       name: "Jobs",
-      link: ""
+      id: 2
     },{
       name: "Projects",
-      link: ""
+      id: 3
     },{
       name: "Job Schedule",
-      link: ""
+      id: 4
     }
   ];
   
+  const handleClick = (id) => {
+    setIndex(id)
+  }
+
   return (
     <>
       <div>
         <div className="flex items-center h-full border-b-2 border-gray-200">
           <ul className="flex overflow-y-auto gap-1">
             {components.map((item, i) => <li key={i}>
-              <Link to={item.link}>
-                <Button variant="secondary" className=" hover:border-b-2 border-blue-900 rounded-none">
-                  {item.name}
-                </Button>
-              </Link>
+              <Button 
+              variant="secondary" 
+              onClick={() => handleClick(item.id)}
+              className={index===i ? "border-b-2 border-blue-900 rounded-none": "" + "hover:border-b-2 border-blue-900 border-opacity-70 rounded-none"}>
+                {item.name}
+              </Button>
             </li>)}
           </ul>
+        </div>
+        <div>
+          {(index===0) ? <TimeLogs /> : (index===1) ? <TimeSheets /> : (index===2) ? <Jobs /> : (index===3) ? <Projects /> : <JobsSchedule />}
         </div>
       </div>
     </>

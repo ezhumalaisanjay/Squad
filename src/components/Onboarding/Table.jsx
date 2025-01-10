@@ -27,12 +27,21 @@ function TableData({data}) {
     addRowsPos: "top"
   }
 
+  const RowClick = (e, row) => {
+    const rowData = row._row.data;
+    console.log(rowData);
+  }
+
   return (
     <ReactTabulator
     data={data}
     columns={columns}
-    options={options}>
-      
+    options={options}
+    events={{
+      rowClick: RowClick
+    }}
+    >
+    
     </ReactTabulator>
   )
 }

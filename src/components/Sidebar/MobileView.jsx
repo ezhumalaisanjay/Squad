@@ -1,5 +1,5 @@
 "use client"
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet";
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet";
 import { Button } from "../ui/button";
 import { Aperture, Award, CalendarCheck, CalendarDays, CircleEllipsis, Component, File, GaugeCircle, Handshake, House, Menu, Navigation, Puzzle, SettingsIcon, Star, TimerReset, Trophy } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -12,7 +12,7 @@ function MobileView() {
   const components = [
     {
       name : "Home",
-      link : "/",
+      link : "/home/",
       icon : House,
     },{
       name : "Onboarding",
@@ -32,34 +32,44 @@ function MobileView() {
       icon : CalendarDays,
     }
   ];
+  
   const addLists = [
     {
       name: "Perfomance",
-      icon: Trophy
+      icon: Trophy,
+      link: "/performance/"
     }, {
       name: "Files",
-      icon: File
+      icon: File,
+      link: "/files/"
     }, {
       name: "Employee Engagement",
-      icon: Award
+      icon: Award,
+      link: "/employeengagement/"
     }, {
       name: "Cases",
-      icon: Aperture
+      icon: Aperture,
+      link: "/cases/"
     }, {
       name: "HR Letters",
-      icon: Star
+      icon: Star,
+      link: "/hrletters/"
     },{
       name: "Travel",
-      icon: Navigation
+      icon: Navigation,
+      link: "/travel/"
     }, {
       name: "Tasks",
-      icon: CalendarCheck
+      icon: CalendarCheck,
+      link: "/tasks/"
     }, {
       name: "Compensation",
-      icon: Component
+      icon: Component,
+      link: "/compensation/"
     }, {
       name: "General",
-      icon: Puzzle
+      icon: Puzzle,
+      link: "/general/"
     }
   ];
 
@@ -77,6 +87,8 @@ function MobileView() {
               </div>
           </SheetTitle>
         </SheetHeader>
+        <SheetDescription>
+        </SheetDescription>
         <div className="mt-5">
           <ul className="flex flex-col gap-3 ">
           {components.map((item, i) => 
@@ -92,7 +104,7 @@ function MobileView() {
               <CircleEllipsis className="size-6"/>
               <span>More</span>
             </PopoverTrigger>
-            <PopoverContent side="right" className=" lg:w-[400] h-[400]">
+            <PopoverContent side="sm:right" className=" lg:w-[400] mt-8 h-[400]">
               <Command className="">
                 <CommandInput placeholder="Search" />
                 <div className="flex justify-between m-1 text-sm items-center">
@@ -100,17 +112,18 @@ function MobileView() {
                   <Button variant="link" className="flex gap-1 text-blue-500 hover:no-underline"><SettingsIcon className="size-4"/> Preferences</Button>
                 </div>
                 <ul className="flex items-start gap-4 flex-col mt-1 overflow-y-scroll">
-                  {addLists.map((list, i) => <div className="flex bg-white" key={i}>
-                    <Button variant="ghost" className="">
-                    <list.icon />{list.name}
-                    </Button>
+                  {addLists.map((list, i) => <div className="w-full bg-white" key={i}>
+                    <Link to={list.link}>
+                      <Button variant="ghost" className="w-full flex justify-start hover:bg-slate-300">
+                        <list.icon />{list.name}
+                      </Button>
+                    </Link>
                     </div>)}
                 </ul>
               </Command>
             </PopoverContent>
           </Popover>
           </ul>
-          
         </div>
       </SheetContent>
     </Sheet>

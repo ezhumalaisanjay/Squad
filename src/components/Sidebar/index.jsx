@@ -19,66 +19,79 @@ import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Command, CommandInput } from "../ui/command";
 import { Button } from "../ui/button";
 
-const components = [
-  {
-    name : "Home",
-    link : "/",
-    icon : House,
-  },{
-    name : "Onboarding",
-    link : "/onboarding",
-    icon : Handshake
-  },{
-    name : "Leave Tracker",
-    link : "/leavetracker",
-    icon : GaugeCircle,
-  },{
-    name : "Time Tracker",
-    link : "/timetracker",
-    icon : TimerReset,
-  },{
-    name : "Attendance",
-    link : "/attendance",
-    icon : CalendarDays,
-  }
-]
-
-function SidebarComponent() {
+function SidebarComponent({isActive}) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isShow, setIsShow] = useState(false)
+  const components = [
+    {
+      name : "Home",
+      link : "/home/",
+      icon : House,
+    },{
+      name : "Onboarding",
+      link : "/onboarding",
+      icon : Handshake
+    },{
+      name : "Leave Tracker",
+      link : "/leavetracker",
+      icon : GaugeCircle,
+    },{
+      name : "Time Tracker",
+      link : "/timetracker",
+      icon : TimerReset,
+    },{
+      name : "Attendance",
+      link : "/attendance",
+      icon : CalendarDays,
+    }
+  ]
+
   const addLists = [
     {
       name: "Perfomance",
-      icon: Trophy
+      icon: Trophy,
+      link: "/performance/"
     }, {
       name: "Files",
-      icon: File
+      icon: File,
+      link: "/files/"
     }, {
       name: "Employee Engagement",
-      icon: Award
+      icon: Award,
+      link: "/employeengagement/"
     }, {
       name: "Cases",
-      icon: Aperture
+      icon: Aperture,
+      link: "/cases/"
     }, {
       name: "HR Letters",
-      icon: Star
+      icon: Star,
+      link: "/hrletters/"
     },{
       name: "Travel",
-      icon: Navigation
+      icon: Navigation,
+      link: "/travel/"
     }, {
       name: "Tasks",
-      icon: CalendarCheck
+      icon: CalendarCheck,
+      link: "/tasks/"
     }, {
       name: "Compensation",
-      icon: Component
+      icon: Component,
+      link: "/compensation/"
     }, {
       name: "General",
-      icon: Puzzle
+      icon: Puzzle,
+      link: "/general/"
     }
   ];
+  const showEnable = () => {
+    setIsShow(true);
+    isActive=null;
+  }
 
   return (
     <>
-
       <SidebarProvider>
         <Sidebar className="w-[200] text-white" >
           <SidebarHeader className="font-bold text-white text-xl bg-blue-900">
@@ -91,8 +104,8 @@ function SidebarComponent() {
               <SidebarGroupLabel className="text-white">Pages</SidebarGroupLabel>
               <SidebarMenu>
                 {components.map((item, i) => 
-                <SidebarMenuItem key={i}>
-                  <SidebarMenuButton asChild >
+                <SidebarMenuItem key={i} id={i} className="hover:bg-opacity-35">
+                  <SidebarMenuButton asChild className={i===isActive && (!isShow) ? "bg-white text-black" : "" + "hover:bg-slate-300" }>
                     <Link to={item.link}>
                       <item.icon />
                       <span>{item.name}</span>
@@ -100,7 +113,7 @@ function SidebarComponent() {
                   </SidebarMenuButton>
                 </SidebarMenuItem>)}
                 <SidebarMenuItem>
-                  <SidebarMenuButton className="hover:bg-white">
+                  <SidebarMenuButton onClick={showEnable} className={isShow ? "bg-white text-black" : "" + "hover:bg-slate-300"}>
                     <Popover open={isOpen} onOpenChange={setIsOpen}>
                       <PopoverTrigger className="flex gap-2 items-center w-full">
                         <CircleEllipsis className="size-4"/>
@@ -114,10 +127,15 @@ function SidebarComponent() {
                             <Button variant="link" className="flex gap-1 text-blue-500 hover:no-underline"><SettingsIcon className="size-4"/> Preferences</Button>
                           </div>
                           <ul className="flex items-start gap-4 flex-col mt-1 overflow-y-scroll">
-                            {addLists.map((list, i) => <div className="flex bg-white" key={i}>
-                              <Button variant="ghost" className="">
-                              <list.icon />{list.name}
-                              </Button>
+                            {addLists.map((list, i) => <div className="w-full bg-white" key={i}>
+                              <Link to={list.link}>
+                                <Button variant="ghost" 
+                                className="w-full flex justify-start hover:bg-slate-300"
+                                onClick={showEnable}
+                                >
+                                  <list.icon />{list.name}
+                                </Button>
+                              </Link>
                               </div>)}
                           </ul>
                         </Command>

@@ -12,8 +12,9 @@ export default function AttendanceIndex() {
   const[width, setWidth] = useState(window.innerWidth);
   const components = [
     {
-      name: "My Data",
-      link: ""
+      name: "Entry",
+      link: "",
+      id: 0
     }
   ];
 
@@ -35,11 +36,11 @@ export default function AttendanceIndex() {
       </Layout> :
         <Layout>
           <Sider breakpoint="md">
-            <SidebarComponent />
+            <SidebarComponent isActive={4}/>
           </Sider>
           <Layout>
             <Header className="h-14 p-0 bg-blue-900">
-              <HeaderSection />
+              <HeaderSection components={components}/>
             </Header>
             <Content><Attendance /></Content>
           </Layout>

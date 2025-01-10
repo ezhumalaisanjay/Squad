@@ -13,15 +13,8 @@ export default function LeaveTrackerIndex() {
   const components = [
     {
       name: "My Data",
-      link: ""
-    },
-    {
-      name: "Team",
-      link: ""
-    },
-    {
-      name: "Holidays",
-      link: ""
+      link: "",
+      id: 0
     }
   ];
 
@@ -43,7 +36,7 @@ export default function LeaveTrackerIndex() {
       </Layout> :
         <Layout>
           <Sider breakpoint="md">
-            <SidebarComponent />
+            <SidebarComponent isActive={2}/>
           </Sider>
           <Layout>
             <Header className="h-14 p-0 bg-blue-900">

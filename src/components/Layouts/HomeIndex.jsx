@@ -12,12 +12,9 @@ export default function HomeIndex() {
   const[width, setWidth] = useState(window.innerWidth);
   const components = [
     {
-      name: "My Space",
-      link: ""
-    },
-    {
-      name: "Organization",
-      link: ""
+      name: "My Organization",
+      link: "",
+      id: 0
     }
   ];
 
@@ -39,7 +36,7 @@ export default function HomeIndex() {
       </Layout> :
         <Layout>
           <Sider breakpoint="md">
-            <SidebarComponent />
+            <SidebarComponent isActive={0}/>
           </Sider>
           <Layout>
             <Header className="h-14 p-0 bg-blue-900">
