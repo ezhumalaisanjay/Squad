@@ -46,14 +46,6 @@ function Onboarding() {
         setData(changedData);
     }
 
-    useEffect(() => {
-      let inputElement = document.querySelectorAll('input');
-      inputElement.forEach((input) => {
-        input.value = "";
-      })
-    }, [data])
-    
-
     const openDrawer = () => {
       setIsOpen(true);
     }
