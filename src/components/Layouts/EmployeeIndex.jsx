@@ -7,15 +7,23 @@ import Sider from "antd/es/layout/Sider";
 import SidebarComponent from "@/components/Sidebar";
 import {useEffect, useState } from "react";
 import EmployeeEngagement from "../Employee";
-
+import SurveySection from "../Employee/SurveySection";
 
 function EmployeeEngagementIndex() {
   const[width, setWidth] = useState(window.innerWidth);
+  const [index, setIndex] = useState(0);
+  const changingId = (id) => {
+    setIndex(id)
+  }
   const components = [
     {
       name: "My Data",
-      link: "",
+      func: changingId,
       id: 0
+    },{
+      name: "Surveys",
+      func: changingId,
+      id: 1
     }
   ];
 
@@ -33,7 +41,9 @@ function EmployeeEngagementIndex() {
         <Header className="h-14 p-0 bg-blue-900">
           <HeaderSection components={components}/>
         </Header>
-        <Content><EmployeeEngagement /></Content>
+        <Content>
+          {index ===0 ? <EmployeeEngagement /> : <SurveySection />}
+        </Content>
       </Layout> :
         <Layout>
           <Sider breakpoint="md">
@@ -43,7 +53,9 @@ function EmployeeEngagementIndex() {
             <Header className="h-14 p-0 bg-blue-900">
               <HeaderSection components={components}/>
             </Header>
-            <Content><EmployeeEngagement /></Content>
+            <Content>
+              {index ===0 ? <EmployeeEngagement /> : <SurveySection />}
+            </Content>
           </Layout>
         </Layout>}
     </Layout>

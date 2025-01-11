@@ -82,7 +82,7 @@ function Performance() {
       
       <div>
         <div>
-          <ul className="flex gap-1 lg:ml-2">
+          <ul className="flex gap-1 lg:ml-2 overflow-y-auto">
             {components.map((item, i) => <li key={i}>
               <Button 
               variant="secondary" 

@@ -1,23 +1,21 @@
-"use client"
 import { useState } from "react"
 import { Button } from "../ui/button"
-import WithMe from "./WithMe"
-import WithRole from "./WithRole"
+import ENps from "./Enps"
 
-function Files() {
+function SurveySection() {
   const [index, setIndex] = useState(0)
   const components = [
     {
-      name: "Shared with Me",
+      name: "eNPS",
       id: 0
-    }, {
-      name: "Shared with My Role",
+    },{
+      name: "Engagement Survey",
       id: 1
     }
   ]
 
   const handleClick = (id) => {
-    setIndex(id);
+    setIndex(id)
   }
 
   return(
@@ -27,8 +25,8 @@ function Files() {
           <ul className="flex gap-1 lg:ml-2 overflow-y-auto">
             {components.map((item, i) => <li key={i}>
               <Button 
-              variant="secondary" 
-              onClick={() => handleClick(item.id)}
+              variant="secondary"
+              onClick={() => handleClick}
               className={index===i ? "border-b-2 border-blue-900 rounded-none": "" + "hover:border-b-2 border-blue-900 border-opacity-70 rounded-none"}>
                 {item.name}
               </Button>
@@ -36,11 +34,11 @@ function Files() {
           </ul>
         </div>
         <div>
-          {index === 0 ? <WithMe /> : <WithRole />}
+          <ENps />
         </div>
       </div>
     </>
   )
 }
 
-export default Files
+export default SurveySection

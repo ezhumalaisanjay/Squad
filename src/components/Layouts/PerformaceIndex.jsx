@@ -7,11 +7,13 @@ import Sider from "antd/es/layout/Sider";
 import SidebarComponent from "@/components/Sidebar";
 import {useEffect, useState } from "react";
 import Performance from "../Performance";
+import SkillSetMatrix from "../Performance/SkillSetMatrix";
 
 
 function PerformanceIndex() {
   const[width, setWidth] = useState(window.innerWidth);
-  const [name, setName] = useState("Getting Started")
+  const [name, setName] = useState("Getting Started");
+  const [index, setIndex] = useState(0)
   const changeHeaderName = [
     {
       name: name,
@@ -20,21 +22,26 @@ function PerformanceIndex() {
     }
   ];
 
+  const changingId = (id) => {
+    setIndex(id);
+  }
+  
   const components = [
     {
       name: "My Data",
       id: 0,
-      link: ""
+      func: changingId
     }, {
-      name: "Skill Set Matrix",
+      name: "Skill Set",
       id: 1,
-      link: ""
+      func: changingId
     }
   ];
 
   const changingNameClick = () => {
     setName("Performance");
   }
+
 
   useEffect(() => {
     const handleResize = () => setWidth(window.innerWidth)
@@ -50,7 +57,11 @@ function PerformanceIndex() {
         <Header className="h-14 p-0 bg-blue-900">
           <HeaderSection components={components}/>
         </Header>
-        <Content><Performance /></Content>
+        <Content>
+          {index===0 ?
+          <Performance /> :
+          <SkillSetMatrix /> }
+          </Content>
       </Layout> :
         <Layout>
           <Sider breakpoint="md">
@@ -60,7 +71,11 @@ function PerformanceIndex() {
             <Header className="h-14 p-0 bg-blue-900">
               <HeaderSection components={components}/>
             </Header>
-            <Content><Performance /></Content>
+            <Content>
+              {index===0 ?
+              <Performance /> :
+              <SkillSetMatrix /> }
+            </Content>
           </Layout>
         </Layout>}
     </Layout>

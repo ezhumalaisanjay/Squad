@@ -7,15 +7,24 @@ import Sider from "antd/es/layout/Sider";
 import SidebarComponent from "@/components/Sidebar";
 import {useEffect, useState } from "react";
 import Files from "../Files";
-
+import Organization from "../Files/Organization";
 
 function FilesIndex() {
   const[width, setWidth] = useState(window.innerWidth);
+  const [index, setIndex] = useState(0)
+  const changingId = (id) => {
+    setIndex(id);
+  }
+  
   const components = [
     {
       name: "My Files",
-      link: "",
+      func: changingId,
       id: 0
+    }, {
+      name: "Organization",
+      func: changingId,
+      id: 1
     }
   ];
 
@@ -33,7 +42,9 @@ function FilesIndex() {
         <Header className="h-14 p-0 bg-blue-900">
           <HeaderSection components={components}/>
         </Header>
-        <Content><Files /></Content>
+        <Content>
+          {index === 0 ? <Files /> : <Organization />}
+        </Content>
       </Layout> :
         <Layout>
           <Sider breakpoint="md">
@@ -43,7 +54,9 @@ function FilesIndex() {
             <Header className="h-14 p-0 bg-blue-900">
               <HeaderSection components={components}/>
             </Header>
-            <Content><Files /></Content>
+            <Content>
+              {index === 0 ? <Files /> : <Organization />}
+            </Content>
           </Layout>
         </Layout>}
     </Layout>

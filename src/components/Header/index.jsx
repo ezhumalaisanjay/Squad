@@ -34,7 +34,10 @@ function HeaderSection({components}) {
         <MobileView />
         {(components) ? components.map((item, i) => <li key={i}>
           <Button 
-          onClick={() => handleClick(item.id)}
+          onClick={() => {
+            handleClick(item.id)
+            item.func(item.id)
+          }}
           className={index===i ? "border-b-2 rounded-none ml-1" : "" + "hover:border-b-2 ml-2 p-2 lg:p-4 rounded-none"} 
           variant="Link">
             {item.name}
