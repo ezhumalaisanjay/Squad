@@ -9,7 +9,7 @@ import {useEffect, useState } from "react";
 import TimeTracker from "../TimeTracker";
 
 export default function TimeTrackerIndex() {
-  const[width, setWidth] = useState(window.innerWidth);
+  const[width, setWidth] = useState(1200);
   const components = [
     {
       name: "My Data",

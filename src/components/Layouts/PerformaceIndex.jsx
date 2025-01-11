@@ -11,7 +11,7 @@ import SkillSetMatrix from "../Performance/SkillSetMatrix";
 
 
 function PerformanceIndex() {
-  const[width, setWidth] = useState(window.innerWidth);
+  const[width, setWidth] = useState(1200);
   const [name, setName] = useState("Getting Started");
   const [index, setIndex] = useState(0)
   const changeHeaderName = [

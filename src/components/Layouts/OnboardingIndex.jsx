@@ -18,7 +18,7 @@ export default function OnboardingIndex() {
     }];
 
   useEffect(() => {
-    const handleResize = () => setWidth(window.innerWidth)
+    const handleResize = () => setWidth(1200)
     window.addEventListener('resize', handleResize);
 
     return ()=>  window.removeEventListener('resize', handleResize);

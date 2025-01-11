@@ -10,7 +10,7 @@ import HrLetter from "../HR Letters";
 
 
 function HrLettersIndex() {
-  const[width, setWidth] = useState(window.innerWidth);
+  const[width, setWidth] = useState(1200);
   const components = [
     {
       name: "Address Proof",

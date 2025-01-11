@@ -9,7 +9,7 @@ import {useEffect, useState } from "react";
 import Attendance from "../Attendance";
 
 export default function AttendanceIndex() {
-  const[width, setWidth] = useState(window.innerWidth);
+  const[width, setWidth] = useState(1200);
   const components = [
     {
       name: "Entry",

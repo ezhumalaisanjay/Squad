@@ -10,7 +10,7 @@ import Files from "../Files";
 import Organization from "../Files/Organization";
 
 function FilesIndex() {
-  const[width, setWidth] = useState(window.innerWidth);
+  const[width, setWidth] = useState(1200);
   const [index, setIndex] = useState(0)
   const changingId = (id) => {
     setIndex(id);

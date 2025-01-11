@@ -10,7 +10,7 @@ import Cases from "../Cases";
 
 
 function CasesIndex() {
-  const[width, setWidth] = useState(window.innerWidth);
+  const[width, setWidth] = useState(1200);
   const components = [
     {
       name: "Categories",

@@ -10,7 +10,7 @@ import Travel from "../Travel";
 
 
 function TravelIndex() {
-  const[width, setWidth] = useState(window.innerWidth);
+  const[width, setWidth] = useState(1200);
   const components = [
     {
       name: "Travel Request",
