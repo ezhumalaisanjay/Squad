@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { OnboardHeader } from "./OnboardHeader";
 import DrawerDisplay from "./Drawer";
 import TableData from "./Table";
@@ -44,11 +44,15 @@ function Onboarding() {
         setId(i => i+1);
         setIsOpen(!isOpen);
         setData(changedData);
-        let inputElement = document.querySelectorAll('input');
-        inputElement.forEach((input) => {
-          input.value = "";
-        })
     }
+
+    useEffect(() => {
+      let inputElement = document.querySelectorAll('input');
+      inputElement.forEach((input) => {
+        input.value = "";
+      })
+    }, [data])
+    
 
     const openDrawer = () => {
       setIsOpen(true);
