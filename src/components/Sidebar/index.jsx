@@ -18,7 +18,8 @@ import { useState } from "react";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Command, CommandInput } from "../ui/command";
 import { Button } from "../ui/button";
-
+import Image from "next/image";
+import logo from '../Images/logo.png';
 function SidebarComponent({isActive}) {
   const [isOpen, setIsOpen] = useState(false);
   const [isShow, setIsShow] = useState(false)
@@ -96,7 +97,7 @@ function SidebarComponent({isActive}) {
         <Sidebar className="w-[200] text-white" >
           <SidebarHeader className="font-bold text-white text-xl bg-blue-900">
             <div className="flex gap-2">
-              <div className="w-auto"><img src="../Images/logo.png" alt="logo" /></div>
+              <div className="w-auto"><Image src={logo} alt="Logo" width={100} height={100} /></div>
             </div>
             </SidebarHeader>
           <SidebarContent className="bg-blue-900">

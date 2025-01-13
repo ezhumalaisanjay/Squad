@@ -8,13 +8,14 @@ import { Input } from "../ui/input"
 import { Label } from "../ui/label"
 import { Link } from "react-router-dom"
 import { useState } from "react"
-
+import Image from "next/image";
+import logo from '../Images/logo.png';
 function Login() {
   const [loading, setLoading] = useState(false);
 
   const loadingHandler = () => {
     setLoading(true);
-    setTimeout(()=> setLoading(false), 2000)
+    setTimeout(()=> s.etLoading(false), 2000)
   }
 
   return (
@@ -23,7 +24,7 @@ function Login() {
         <CardContent className="flex justify-center h-[470]">
           <Card className="bg-slate-700 flex justify-center rounded-r-none items-center border-none">
             <CardContent>
-              <img src="/_next/static/media/logo.c3cc4a2b.png" alt="" />
+              <Image src={logo} alt="Logo" width={100} height={100} />
             </CardContent>
           </Card>
           <Card className="flex flex-col justify-center p-8 sm:p-20 items-center rounded-l-none">
