@@ -2,7 +2,6 @@
 
 import "./globals.css";
 import OnboardingIndex from "@/components/Layouts/OnboardingIndex";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "@/components/Login";
 import HomeIndex from "@/components/Layouts/HomeIndex";
 import LeaveTrackerIndex from "@/components/Layouts/LeaveTrackerIndex";
@@ -17,12 +16,27 @@ import TravelIndex from "@/components/Layouts/TravelIndex";
 import TasksIndex from "@/components/Layouts/TasksIndex";
 import CompensationIndex from "@/components/Layouts/CompensationIndex";
 import GeneralIndex from "@/components/Layouts/GeneralIndex";
+import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
+import { BrowserRouter as  Router, Route, Routes } from "react-router-dom";
+
 
 export default function Home() {
+  const [isClient, setIsClient] = useState(false);
 
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if(!isClient) {
+    return (
+      <div>Loading...</div>
+    );
+
+  }
   return (
     <>
-      <BrowserRouter>
+      <Router>
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/home/" element={<HomeIndex />} />
@@ -40,7 +54,7 @@ export default function Home() {
           <Route  path="/compensation/" element={<CompensationIndex />} />
           <Route  path="/general/" element={<GeneralIndex />} />
         </Routes>
-      </BrowserRouter>
+      </Router>
     </>
   );
 }

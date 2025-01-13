@@ -9,7 +9,7 @@ import {useEffect, useState } from "react";
 import Onboarding from "@/components/Onboarding";
 
 export default function OnboardingIndex() {
-  const[width, setWidth] = useState(window.innerWidth);
+  const[width, setWidth] = useState(1200);
   const components = [
     {
     name: "My Organization",
@@ -18,7 +18,7 @@ export default function OnboardingIndex() {
     }];
 
   useEffect(() => {
-    const handleResize = () => setWidth(1200)
+    const handleResize = () => setWidth(window.innerWidth)
     window.addEventListener('resize', handleResize);
 
     return ()=>  window.removeEventListener('resize', handleResize);

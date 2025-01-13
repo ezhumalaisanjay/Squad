@@ -46,6 +46,14 @@ function Onboarding() {
         setData(changedData);
     }
 
+    useEffect(() => {
+      let inputElement = document.querySelectorAll('input');
+      inputElement.forEach((input) => {
+        input.value = "";
+      })
+    }, [data])
+    
+
     const openDrawer = () => {
       setIsOpen(true);
     }
@@ -61,6 +69,7 @@ function Onboarding() {
       <DrawerDisplay isOpen={isOpen} isClose={closeDrawer} candidateDetails={candidateDetails} updatedDetails={updatedDetails} handleClick={getData}/>
     </div>
     <div>
+      <TableData data={data}/>
     </div>
     </>
 )}

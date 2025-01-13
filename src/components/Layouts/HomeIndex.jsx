@@ -9,7 +9,7 @@ import {useEffect, useState } from "react";
 import HomePage from "@/components/Home";
 
 export default function HomeIndex() {
-  const[width, setWidth] = useState(window.innerWidth);
+  const[width, setWidth] = useState(window.innerwidth);
   const components = [
     {
       name: "My Organization",
@@ -19,7 +19,7 @@ export default function HomeIndex() {
   ];
 
   useEffect(() => {
-    const handleResize = () => setWidth(1200)
+    const handleResize = () => setWidth(window.innerWidth)
     window.addEventListener('resize', handleResize);
 
     return ()=>  window.removeEventListener('resize', handleResize);
