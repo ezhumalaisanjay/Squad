@@ -97,7 +97,11 @@ function SidebarComponent({isActive}) {
         <Sidebar className="w-[200] text-white" >
           <SidebarHeader className="font-bold text-white text-xl bg-blue-900">
             <div className="flex gap-2">
+<<<<<<< HEAD
               <div className="w-auto"><Image src={logo} alt="Logo" width={100} height={100} /></div>
+=======
+              <div className="w-auto"><img src="/images/logo.png" alt="logo" /></div>
+>>>>>>> fc3876c5959b09a899d5523f15b515ba338e1a87
             </div>
             </SidebarHeader>
           <SidebarContent className="bg-blue-900">
